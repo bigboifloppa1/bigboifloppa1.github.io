@@ -1,4 +1,5 @@
 var a = navigator.geolocation;
+var btn = document.querySelector('.btn');
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -7,3 +8,20 @@ function getLocation() {
     });
   }
 }
+
+function handleOrientationChange() {
+  if (window.orientation !== 0) {
+    btn.style.width = "10%";
+    btn.style.height = "10%";
+  } else {
+    btn.style.width = "20%";
+    btn.style.height = "5%";
+  }
+}
+
+setInterval(() => {
+  handleOrientationChange();
+  
+  window.addEventListener("orientationchange", handleOrientationChange);
+},500);
+
